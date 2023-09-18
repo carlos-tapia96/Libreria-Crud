@@ -1,14 +1,31 @@
 <form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  
+  {% for campo in formulario %}
 
     <div class="mb-3">
-      <label for="" class="form-label">Nombre:</label>
-      <input type="text"
-        class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nombre">
+      <label for="" class="form-label">{{campo.label}}:</label>
+      
+      
+      {% if campo.field.widget.input_type == 'file' and campo.value %}
+        <br>
+        <img src="{{MEDIA_URL}}/imagenes/{{campo.value}}" width="100" alt="">
+      {% endif %}
+        
+
+      <input 
+      type="{{campo.field.widget.input_type}}"
+      class="form-control" 
+      name="{{campo.name}}" 
+      id="" 
+      aria-describedby="helpId" 
+      value="{{campo.value | default:'' }}"
+      placeholder="{{campo.label}}">
     </div>
+    <div class="col-12 help-text">{{campo.errors}}</div>
 
+  {% endfor %}
 
-
-
-
-
+  <input name="" id="" class="btn btn-success" type="submit" value="Registrar">
+    <a name="" id="" class="btn btn-primary" href="{url 'libros'}" role="button">Atras</a>
 </form>

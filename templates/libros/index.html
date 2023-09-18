@@ -33,11 +33,14 @@
                     <tr class="">
                         <td>{{ libro.id}}</td>
                         <td>{{ libro.titulo}}</td>
-                        <td>{{ libro.imagen}}</td>
+                        <td>
+                        <img src="{{ libro.imagen.url }}" height="100">
+                            
+                        </td>
                         <td>{{ libro.descripcion}}</td>
-                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar' %}" role="button">Editar</a> 
+                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar-libro' libro.id %}" role="button">Editar</a> 
                             - 
-                            <a name="" id="" class="btn btn-danger" href="" role="button">Eliminar</a></td>
+                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -46,7 +49,7 @@
         
     </div>
     <div class="card-footer text-muted">
-        Footer
+        
     </div>
 </div>
 

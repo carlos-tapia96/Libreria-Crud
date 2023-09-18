@@ -8,9 +8,13 @@
 {% block contenido %}
 <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid py-5">
-      <h1 class="display-5 fw-bold">Bienvenidos al sitio de la libreria</h1>
-      <p class="col-md-8 fs-4">Empezar a ingresar libros</p>
-      <button class="btn btn-primary btn-lg" type="button">Empezar</button>
+      <h1 class="display-5 fw-bold">Bienvenidos a Libreria Back-Bol</h1>
+      <p class="col-md-8 fs-4">Horario de atención en tienda:
+        Lunes a Viernes: 14:00 a 19:00
+        Sábado, Domingo y Feriados: Cerrado</p>
+      <a href="{% url 'libros' %}">
+        <button class="btn btn-primary btn-lg" type="button">Ingresar</button>
+      </a>
     </div>
   </div>
 

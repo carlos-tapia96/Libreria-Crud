@@ -1,0 +1,34 @@
+# Ignore archivos y directorios generados por el sistema operativo y el entorno de desarrollo
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+
+# Ignore el directorio de configuración local (puede variar según tu entorno)
+env/
+
+# Ignore archivos de registro y directorios de registro generados
+log/
+logs/
+*.log
+
+# Ignore archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignore archivos de configuración de desarrollo local
+*.settings
+*.local
+
+# Ignore archivos y directorios relacionados con las migraciones de la base de datos
+**/migrations/
+
+# Ignore archivos de caché generados por Django
+__pycache__
+
+# Ignore archivos de registro de dependencias y entorno virtual
+pip-log.txt
+pipenv.lock
+
+imagenes/

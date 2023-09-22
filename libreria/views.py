@@ -18,7 +18,7 @@ class logueo(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('inicio')
+        return reverse_lazy('libros')
 
 class RegistroUsuario(FormView):
     template_name = 'paginas/registro_usuario.html'
@@ -44,23 +44,24 @@ class Nosotros(TemplateView):
     template_name = ('paginas/nosotros.html')
 
 class Libros( LoginRequiredMixin, TemplateView):
-    libros = Libro.objects.all()
     template_name = ( 'libros/index.html')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['libros'] = Libro.objects.all()
+        return context
+
 
 
 class CrearLibro(LoginRequiredMixin, CreateView):
     model = Libro
-    fields = ['titulo','imagen','descripcion']
+    fields = ['titulo','imagen','descripcion', 'pdf']
     success_url = reverse_lazy('libros')
     template_name = 'libros/crear-libro.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CrearLibro, self).form_valid(form)
-    
-
-
-
 
 def editar(request, id):
     libro = Libro.objects.get(id=id)

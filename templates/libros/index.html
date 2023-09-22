@@ -17,10 +17,11 @@
             <table class="table table-primary">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Imagen</th>
+                        <th scope="col">Subido Por</th>
+                        <th scope="col">Libro</th>
+                        <th scope="col">Portada</th>
                         <th scope="col">Descripcion</th>
+                        <th scope="col">Descargar Libro</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -31,16 +32,17 @@
                     
                         
                     <tr class="">
-                        <td>{{ libro.id}}</td>
+                        <td>{{ libro.user}}</td>
                         <td>{{ libro.titulo}}</td>
                         <td>
                         <img src="{{ libro.imagen.url }}" height="100">
                             
                         </td>
                         <td>{{ libro.descripcion}}</td>
-                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar-libro' libro.id %}" role="button">Editar</a> 
+                        <td><a {% if libro.pdf %} download href="{{libro.pdf.url}}" {% else %} href="{% url 'libros' %}" disabled {% endif %}class="btn btnPrimary">Descargar</a></td>
+                        <td><a class="btn btn-info" href="{% url 'editar-libro' libro.id %}" role="button">Editar</a> 
                             - 
-                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Eliminar</a></td>
+                            <a class="btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

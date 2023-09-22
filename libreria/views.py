@@ -1,11 +1,16 @@
+from typing import Any
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from .models import Libro
 from .forms import LibroForm
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.views.generic import TemplateView
+
 
 # Create your views here.
 class logueo(LoginView):
@@ -15,17 +20,32 @@ class logueo(LoginView):
     def get_success_url(self):
         return reverse_lazy('inicio')
 
-def inicio(request):
-    return render (request, 'paginas/inicio.html')
+class RegistroUsuario(FormView):
+    template_name = 'paginas/registro_usuario.html'
+    form_class = UserCreationForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('inicio')
 
-def nosotros(request):
-    return render (request, 'paginas/nosotros.html')
+    def form_valid(self, form):
+        usuario = form.save()
+        if usuario is not None:
+            login(self.request, usuario)
+        return super(RegistroUsuario, self).form_valid(form)
 
-def libros(request):
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('inicio')
+        return super(RegistroUsuario, self).get(*args, **kwargs)
+
+class Inicio(TemplateView):
+    template_name = ( 'paginas/inicio.html')
+
+class Nosotros(TemplateView):
+    template_name = ('paginas/nosotros.html')
+
+class Libros( LoginRequiredMixin, TemplateView):
     libros = Libro.objects.all()
-    return render (request, 'libros/index.html', {'libros':libros})
-
-
+    template_name = ( 'libros/index.html')
 
 
 class CrearLibro(LoginRequiredMixin, CreateView):

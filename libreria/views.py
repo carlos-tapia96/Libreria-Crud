@@ -5,7 +5,7 @@ from .models import Libro
 from .forms import LibroForm
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -63,18 +63,14 @@ class CrearLibro(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super(CrearLibro, self).form_valid(form)
 
-def editar(request, id):
-    libro = Libro.objects.get(id=id)
-    formulario = LibroForm(request.POST or None, request.FILES or None, instance=libro)
-    if formulario.is_valid() and request.POST:
-        formulario.save()
-        return redirect('libros')
-    return render (request, 'libros/editar-libro.html', {'formulario':formulario})
+class Editar(LoginRequiredMixin, UpdateView):
+    model = Libro
+    fields = ['titulo','imagen','descripcion', 'pdf']
+    success_url = reverse_lazy('libros')
+    template_name = 'libros/editar-libro.html'
 
-def eliminar (request, id):
-    libro = Libro.objects.get(id=id)
-    libro.delete()
-    return redirect('libros')
-
-
+class Eliminar(LoginRequiredMixin, DeleteView):
+    model = Libro
+    template_name = 'libros/eliminar-libro.html'
+    success_url = reverse_lazy('libros')
 

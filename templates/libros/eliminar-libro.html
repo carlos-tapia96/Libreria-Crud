@@ -2,20 +2,21 @@
 
 
 {% block titulo %}
-    Agregar nuevo libro
+    Eliminar libro
 {% endblock titulo %}
 
 
 {% block contenido %}
 
+
 <div class="card">
     <div class="card-header">
-        Crear un libro
+        Eliminar libro
     </div>
     <div class="card-body">
-        <h4 class="card-title">Datos del libro</h4>
+        
 
-        {% include "libros/form-crear.html" %}
+        {% include "libros/form-eliminar.html" %}
 
 
     </div>
@@ -24,6 +25,4 @@
     </div>
 </div>
 
-
-
-{% endblock  %}
+{% endblock contenido %}

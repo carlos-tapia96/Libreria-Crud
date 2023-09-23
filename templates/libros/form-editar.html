@@ -1,0 +1,35 @@
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="{{form.titulo.id_for_label}}">Titulo Del Libro: </label>
+    {{form.titulo}}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.imagen.id_for_label }}">Portada actual del Libro:</label><br>
+    {% if form.instance.imagen %}
+      <img src="{{ form.instance.imagen.url }}" alt="Portada actual" style="max-width: 150px;">
+    {% else %}
+      No hay portada actual.
+    {% endif %}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.imagen.id_for_label }}">Cambiar portada del Libro (opcional):</label>
+    {{ form.imagen }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.descripcion.id_for_label }}">Breve Descripción:</label>
+    {{ form.descripcion }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.pdf.id_for_label }}">PDF Del Libro:</label>
+    {{ form.pdf }}
+  </div>
+
+  <input class="btn btn-success" type="submit" value="Guardar Cambios">
+  <a href="{% url 'libros' %}" class="btn btn-primary">Atrás</a>
+</form>

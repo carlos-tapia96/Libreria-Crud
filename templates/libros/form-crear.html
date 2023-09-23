@@ -1,0 +1,26 @@
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="{{form.titulo.id_for_label}}">Titulo Del Libro: </label>
+    {{form.titulo}}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.imagen.id_for_label }}">Portada del Libro:</label><br>
+    {{ form.imagen }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.descripcion.id_for_label }}">Breve Descripción:</label>
+    {{ form.descripcion }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.pdf.id_for_label }}">PDF Del Libro:</label>
+    {{ form.pdf }}
+  </div>
+
+  <input class="btn btn-success" type="submit" value="Registrar">
+  <a href="{% url 'libros' %}" class="btn btn-primary">Atrás</a>
+</form>

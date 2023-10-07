@@ -11,11 +11,6 @@ class Libro(models.Model):
     pdf = models.FileField(upload_to='imagenes/pdfs', verbose_name='PDF',blank=True, null=True)
     created = models.DateField(auto_now=True)
 
-    def delete(self, using=None, keep_parents=False):
-        self.imagen.storage.delete(self.imagen.name)
-        self.pdf.storage.delete(self.pdf.name)
-        super().delete()
-
     def __str__(self):
         return self.titulo
 

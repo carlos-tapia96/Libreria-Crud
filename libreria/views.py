@@ -73,4 +73,3 @@ class Eliminar(LoginRequiredMixin, DeleteView):
     model = Libro
     template_name = 'libros/eliminar-libro.html'
     success_url = reverse_lazy('libros')
-

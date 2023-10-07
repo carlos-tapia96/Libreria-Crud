@@ -27,8 +27,8 @@ Ofrecemos las siguientes operaciones CRUD para gestionar la colección de libros
 
 - **Crear Libro**: Agrega nuevos libros a nuestra librería proporcionando un título, imagen y descripción.
 - **Leer Libro**: Consulta la información detallada de un libro seleccionando su título.
-- **Actualizar Libro**: Edita y actualiza la información de un libro existente.
-- **Eliminar Libro**: Elimina un libro de nuestra colección.
+- **Actualizar Libro**: Edita y actualiza la información de un libro existente solo si eres el autor de este.
+- **Eliminar Libro**: Elimina un libro de nuestra colección solo si eres el autor de este.
 
 ## Requisitos del Sistema
 
@@ -37,26 +37,6 @@ Asegúrate de que tu sistema cumpla con los siguientes requisitos para utilizar 
 - Navegador web moderno (se recomienda Google Chrome, Mozilla Firefox, o Microsoft Edge).
 - Instalar dependencias que se encuentran en requirements.txt
 
-## Uso
+Este Proyecto se realizo con base de datos MySql, Python, Django
 
-1. Abre tu navegador web favorito.
 
-2. Ve a la dirección URL de nuestro sitio web.
-
-3. Navega por las diferentes secciones: Inicio, Libros y Nosotros.
-
-4. En la página de Libros, utiliza las opciones CRUD para administrar la colección de libros.
-
-## Contribuir
-
-Si deseas contribuir a este proyecto o informar sobre problemas, sigue estos pasos:
-
-1. Haz un fork del repositorio.
-
-2. Clona el repositorio en tu máquina local.
-
-3. Realiza tus cambios y mejoras.
-
-4. Crea una solicitud de extracción en GitHub.
-
-5. Espera a que revisemos y fusionemos tus cambios.

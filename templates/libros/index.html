@@ -40,9 +40,14 @@
                         </td>
                         <td>{{ libro.descripcion}}</td>
                         <td><a {% if libro.pdf %} download href="{{libro.pdf.url}}" {% else %} href="{% url 'libros' %}" disabled {% endif %}class="btn btnPrimary">Descargar</a></td>
-                        <td><a class="btn btn-info" href="{% url 'editar-libro' libro.id %}" role="button">Editar</a> 
-                            - 
-                            <a class="btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Eliminar</a></td>
+                        <td>
+                            {% if user.is_authenticated and user == libro.user %}
+                                <a class="btn btn-info" href="{% url 'editar-libro' libro.id %}" role="button">Editar</a> 
+                                - 
+                                <a class="btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Eliminar</a>
+                            {% endif %}
+
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
